@@ -1,0 +1,15 @@
+name: Phil
+hello: Good Evening
+spring:
+  profiles:
+    active: generic
+
+---
+spring:
+  profiles: goodbye,dev
+name: Everyone
+
+---
+spring:
+  profiles: hello
+name: David

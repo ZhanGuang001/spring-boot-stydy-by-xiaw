@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 容器自动识别注解的配置 -->
+	<!-- <context:annotation-config /> -->
+	<!-- 与注解方式配合使用 -->
+	<!-- <context:component-scan base-package="com.example"/> -->
+	<!-- 导入多个配置文件 -->
+	<!-- <context:property-placeholder /> -->
+
+	<bean id="xmlBean" class="com.example.bean.XmlBean">
+		<property name="p1" value="3" />
+		<property name="p2" value="Some value" />
+		<constructor-arg type="String" value="aaaa"></constructor-arg>
+		<constructor-arg type="Integer" value="1"></constructor-arg>
+	</bean>
+	
+	<bean id="helloWorldService"
+		class="com.example.service.HelloWorldService">
+		<property name="name" value="world"></property>
+		<!-- <constructor-arg type="String" value="world"></constructor-arg> -->
+	</bean>
+	
+	<bean id="exampleBean" class="com.example.bean.ExampleBean">
+		<!-- constructor injection using the nested ref element -->
+		<constructor-arg>
+			<ref bean="anotherBean" />
+		</constructor-arg>
+		<!-- constructor injection using the neater ref attribute -->
+		<constructor-arg ref="yetAnotherBean" />
+		<constructor-arg type="int" value="1" />
+		<property name="beanOne">
+			<ref bean="anotherBean" />
+		</property>
+		<property name="beanTwo" ref="yetAnotherBean" />
+		<property name="i" value="1" />
+	</bean>
+
+	<bean id="anotherBean" class="com.example.bean.AnotherBean">
+		<property name="name" value="i'm anotherBean" />
+	</bean> 
+	<bean id="yetAnotherBean" class="com.example.bean.YetAnotherBean">
+		<property name="name" value="i'm yetAnotherBean" />
+	</bean>
+
+</beans>
